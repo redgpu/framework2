@@ -871,6 +871,7 @@ REDGPU_F_DECLSPEC void                redF2ShadowSetNormalBias                (R
 REDGPU_F_DECLSPEC void                redF2ShadowSetAllShadowDepthResolutions (RedFHandleShadow handle, int width, int height);
 REDGPU_F_DECLSPEC void                redF2ShadowSetShadowType                (RedFHandleShadow handle, RedF2ShadowType type);
 REDGPU_F_DECLSPEC void                redF2ShadowSetSampleRadius              (RedFHandleShadow handle, float sampleRadius);
+REDGPU_F_DECLSPEC void                redF2ShadowSetEnabled                   (RedFHandleShadow handle, RedFBool32 enable);
 REDGPU_F_DECLSPEC RedFBool32          redF2ShadowIsEnabled                    (RedFHandleShadow handle);
 REDGPU_F_DECLSPEC void                redF2ShadowSetNearClip                  (RedFHandleShadow handle, float anear);
 REDGPU_F_DECLSPEC void                redF2ShadowSetFarClip                   (RedFHandleShadow handle, float afar);
