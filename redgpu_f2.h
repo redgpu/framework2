@@ -790,7 +790,9 @@ REDGPU_F_DECLSPEC RedFHandleFbxBone   redFFbxBoneGetChildBoneByNameRecursively(R
 
 // REDGPU Framework 2
 
-typedef struct RedFTypeHandleShadow * RedFHandleShadow;
+typedef struct RedFTypeHandleShadow *             RedFHandleShadow;
+typedef struct RedFTypeHandlePostProcessing *     RedFHandlePostProcessing;
+typedef struct RedFTypeHandlePostProcessingPass * RedFHandlePostProcessingPass;
 
 typedef enum RedF2LogLevel {
   REDF2_LOG_LEVEL_VERBOSE     = 0,
@@ -887,6 +889,15 @@ REDGPU_F_DECLSPEC void                redF2ManipulatorGetCurrentState         (R
 REDGPU_F_DECLSPEC RedFBool32          redF2ManipulatorIsFreezed               (RedFHandleManipulator handle);
 REDGPU_F_DECLSPEC void                redF2ManipulatorFreeze                  (RedFHandleManipulator handle);
 REDGPU_F_DECLSPEC void                redF2ManipulatorUnfreeze                (RedFHandleManipulator handle);
+
+REDGPU_F_DECLSPEC RedFHandlePostProcessing *   redFCreatePostProcessing       (uint64_t count);
+REDGPU_F_DECLSPEC void                redFDestroyPostProcessing               (RedFHandlePostProcessing * handles);
+REDGPU_F_DECLSPEC void                redF2PostProcessingInit                 (RedFHandlePostProcessing handle, int widthDefaultIsRedFGetWidth, int heightDefaultIsRedFGetHeight);
+REDGPU_F_DECLSPEC void                redF2PostProcessingSetFlip              (RedFHandlePostProcessing handle, RedFBool32 flip);
+REDGPU_F_DECLSPEC RedFHandlePostProcessingPass redF2PostProcessingCreatePassSSAO (RedFHandlePostProcessing handle);
+REDGPU_F_DECLSPEC void                redF2PostProcessingPassSSAOSetParameters(RedFHandlePostProcessingPass handle, float cameraNearDefaultIs1, float cameraFarDefaultIs1000, float fogNearDefaultIs1, float fogFarDefaultIs1000, RedFBool32 fogEnabledDefaultIs0, RedFBool32 onlyAODefaultIs0, float aoClampDefaultIs0dot5, float lumInfluenceDefaultIs0dot9);
+REDGPU_F_DECLSPEC void                redF2PostProcessingBegin                (RedFHandlePostProcessing handle, RedFHandleCamera camera);
+REDGPU_F_DECLSPEC void                redF2PostProcessingEnd                  (RedFHandlePostProcessing handle, RedFHandleCamera camera);
 
 #ifdef __cplusplus
 }

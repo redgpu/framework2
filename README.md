@@ -32,6 +32,74 @@ int main() {
 ```
 
 ```c
+// REDGPU Framework 2 "Hello, SSAO!" Program
+
+// Compile command for Windows:
+// cl main.c /link framework2/redgpu_f2dll.lib
+
+#include "framework2/redgpu_f2.h"
+
+RedFHandleFirstPersonCamera * gCamera;
+RedFHandlePostProcessing    * gPostProc;
+
+void setup(void) {
+  gCamera = redFCreateFirstPersonCamera(1);
+  redFFirstPersonCameraControlEnable(gCamera[0]);
+
+  redFCameraSetNearClip(redFFirstPersonCameraCastToCamera(gCamera[0]), 1);
+  redFCameraSetFarClip(redFFirstPersonCameraCastToCamera(gCamera[0]), 1000);
+  RedFHandleNode cameraNode = redFFirstPersonCameraCastToNode(gCamera[0]);
+  redFNodeSetGlobalPosition(cameraNode, 0, 5, 125);
+
+  gPostProc = redFCreatePostProcessing(1);
+  redF2PostProcessingInit(gPostProc[0], redFGetWidth(), redFGetHeight());
+  redF2PostProcessingSetFlip(gPostProc[0], 1);
+  RedFHandlePostProcessingPass pass = redF2PostProcessingCreatePassSSAO(gPostProc[0]);
+  redF2PostProcessingPassSSAOSetParameters(pass,
+    1,    // cameraNearDefaultIs1
+    1000, // cameraFarDefaultIs1000
+    1,    // fogNearDefaultIs1
+    1000, // fogFarDefaultIs1000
+    0,    // fogEnabledDefaultIs0
+    0,    // onlyAODefaultIs0
+    0.5,  // aoClampDefaultIs0dot5
+    0.5   // lumInfluenceDefaultIs0dot9
+  );
+}
+
+void draw(void) {
+  redFEnableDepthTest();
+
+  redF2PostProcessingBegin(gPostProc[0], redFFirstPersonCameraCastToCamera(gCamera[0]));
+
+  redFSetColor(255, 0, 0, 255);
+  redFDrawSphere(0, 0, 0, 25.f);
+
+  redFSetColor(255, 0, 0, 255);
+  redFPushMatrix();
+  redFTranslate(0, -10, 25);
+  redFDrawSphere(0, 0, 0, 15.f);
+  redFPopMatrix();
+
+  redFSetColor(255, 255, 255, 255);
+  redFPushMatrix();
+  redFRotateDeg(90, 1, 0, 0);
+  redFTranslate(0, 0, 25);
+  redFDrawPlane(0, 0, 0, 500, 500);
+  redFPopMatrix();
+
+  redF2PostProcessingEnd(gPostProc[0], redFFirstPersonCameraCastToCamera(gCamera[0]));
+}
+
+int main() {
+  RedFEvents events = {0};
+  events.setup = setup;
+  events.draw  = draw;
+  redFMain(&events, 600, 600, REDF_WINDOW_MODE_WINDOW, 0, 1, 0, 1, 0, 0);
+}
+```
+
+```c
 // REDGPU Framework 2 "Hello, Shadows!" Program
 
 // Compile command for Windows:
