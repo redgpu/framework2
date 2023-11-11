@@ -895,6 +895,7 @@ REDGPU_F_DECLSPEC void                redFDestroyPostProcessing               (R
 REDGPU_F_DECLSPEC void                redF2PostProcessingInit                 (RedFHandlePostProcessing handle, int widthDefaultIsRedFGetWidth, int heightDefaultIsRedFGetHeight);
 REDGPU_F_DECLSPEC void                redF2PostProcessingSetFlip              (RedFHandlePostProcessing handle, RedFBool32 flip);
 REDGPU_F_DECLSPEC RedFHandlePostProcessingPass redF2PostProcessingCreatePassSSAO (RedFHandlePostProcessing handle);
+REDGPU_F_DECLSPEC RedFHandlePostProcessingPass redF2PostProcessingCreatePassSSAOWithCustomSSAOShader (RedFHandlePostProcessing handle, const char * customSSAOShader);
 REDGPU_F_DECLSPEC void                redF2PostProcessingPassSSAOSetParameters(RedFHandlePostProcessingPass handle, float cameraNearDefaultIs1, float cameraFarDefaultIs1000, float fogNearDefaultIs1, float fogFarDefaultIs1000, RedFBool32 fogEnabledDefaultIs0, RedFBool32 onlyAODefaultIs0, float aoClampDefaultIs0dot5, float lumInfluenceDefaultIs0dot9);
 REDGPU_F_DECLSPEC void                redF2PostProcessingBegin                (RedFHandlePostProcessing handle, RedFHandleCamera camera);
 REDGPU_F_DECLSPEC void                redF2PostProcessingEnd                  (RedFHandlePostProcessing handle, RedFHandleCamera camera);
