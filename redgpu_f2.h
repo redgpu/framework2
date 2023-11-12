@@ -791,8 +791,8 @@ REDGPU_F_DECLSPEC RedFHandleFbxBone   redFFbxBoneGetChildBoneByNameRecursively(R
 // REDGPU Framework 2
 
 typedef struct RedFTypeHandleShadow *             RedFHandleShadow;
-typedef struct RedFTypeHandlePostProcessing *     RedFHandlePostProcessing;
-typedef struct RedFTypeHandlePostProcessingPass * RedFHandlePostProcessingPass;
+typedef struct RedFTypeHandlePostProcessing *     RedFHandlePostProcessing;     // Post processing works only for OpenGL 2.1
+typedef struct RedFTypeHandlePostProcessingPass * RedFHandlePostProcessingPass; // Post processing works only for OpenGL 2.1
 
 typedef enum RedF2LogLevel {
   REDF2_LOG_LEVEL_VERBOSE     = 0,
@@ -890,13 +890,15 @@ REDGPU_F_DECLSPEC RedFBool32          redF2ManipulatorIsFreezed               (R
 REDGPU_F_DECLSPEC void                redF2ManipulatorFreeze                  (RedFHandleManipulator handle);
 REDGPU_F_DECLSPEC void                redF2ManipulatorUnfreeze                (RedFHandleManipulator handle);
 
-REDGPU_F_DECLSPEC RedFHandlePostProcessing *   redFCreatePostProcessing       (uint64_t count);
+REDGPU_F_DECLSPEC RedFHandlePostProcessing * redFCreatePostProcessing         (uint64_t count);
 REDGPU_F_DECLSPEC void                redFDestroyPostProcessing               (RedFHandlePostProcessing * handles);
 REDGPU_F_DECLSPEC void                redF2PostProcessingInit                 (RedFHandlePostProcessing handle, int widthDefaultIsRedFGetWidth, int heightDefaultIsRedFGetHeight);
 REDGPU_F_DECLSPEC void                redF2PostProcessingSetFlip              (RedFHandlePostProcessing handle, RedFBool32 flip);
-REDGPU_F_DECLSPEC RedFHandlePostProcessingPass redF2PostProcessingCreatePassSSAO (RedFHandlePostProcessing handle);
+REDGPU_F_DECLSPEC RedFHandlePostProcessingPass redF2PostProcessingCreatePassSSAO                     (RedFHandlePostProcessing handle);
 REDGPU_F_DECLSPEC RedFHandlePostProcessingPass redF2PostProcessingCreatePassSSAOWithCustomSSAOShader (RedFHandlePostProcessing handle, const char * customSSAOShader);
-REDGPU_F_DECLSPEC void                redF2PostProcessingPassSSAOSetParameters(RedFHandlePostProcessingPass handle, float cameraNearDefaultIs1, float cameraFarDefaultIs1000, float fogNearDefaultIs1, float fogFarDefaultIs1000, RedFBool32 fogEnabledDefaultIs0, RedFBool32 onlyAODefaultIs0, float aoClampDefaultIs0dot5, float lumInfluenceDefaultIs0dot9);
+REDGPU_F_DECLSPEC RedFHandlePostProcessingPass redF2PostProcessingCreatePassGeneric                  (RedFHandlePostProcessing handle, const char * vertexShader, const char * fragmentShader);
+REDGPU_F_DECLSPEC void                redF2PostProcessingPassSSAOSetParameters    (RedFHandlePostProcessingPass handle, float cameraNearDefaultIs1, float cameraFarDefaultIs1000, float fogNearDefaultIs1, float fogFarDefaultIs1000, RedFBool32 fogEnabledDefaultIs0, RedFBool32 onlyAODefaultIs0, float aoClampDefaultIs0dot5, float lumInfluenceDefaultIs0dot9);
+REDGPU_F_DECLSPEC void                redF2PostProcessingPassGenericSetParameters (RedFHandlePostProcessingPass handle, float parameter0, float parameter1, float parameter2, float parameter3, float parameter4, float parameter5, float parameter6, float parameter7, float parameter8, float parameter9, float parameter10, float parameter11, float parameter12, float parameter13, float parameter14, float parameter15);
 REDGPU_F_DECLSPEC void                redF2PostProcessingBegin                (RedFHandlePostProcessing handle, RedFHandleCamera camera);
 REDGPU_F_DECLSPEC void                redF2PostProcessingEnd                  (RedFHandlePostProcessing handle, RedFHandleCamera camera);
 
