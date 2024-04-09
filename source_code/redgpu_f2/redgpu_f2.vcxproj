@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="addons\ofxAssimpModelLoader\src\ofxAssimpAnimation.cpp" />
+    <ClCompile Include="addons\ofxAssimpModelLoader\src\ofxAssimpMeshHelper.cpp" />
+    <ClCompile Include="addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp" />
+    <ClCompile Include="addons\ofxAssimpModelLoader\src\ofxAssimpTexture.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\ofxFBXAnimation.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\ofxFBXBone.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\ofxFBX.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\ofxFBXMesh.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\ofxFBXMeshMaterial.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\ofxFBXNode.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\ofxFBXNurbsCurve.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\ofxFBXSkeleton.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\GetPosition.cxx" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\ofxFBXSrcBone.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\ofxFBXSrcCluster.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\ofxFBXSrcMesh.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\ofxFBXSrcMeshMaterial.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\ofxFBXSrcNode.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\ofxFBXSrcNurbsCurve.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\ofxFBXSrcPose.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\ofxFBXSrcScene.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\src\FBXSource\ofxFBXSrcSkeleton.cpp" />
+    <ClCompile Include="ofxaddons\ofxFBX\libs\libfbxsdk_2019.5\include\Common\AnimationUtility.cxx" />
+    <ClCompile Include="ofxaddons\ofxFBX\libs\libfbxsdk_2019.5\include\Common\Common.cxx" />
+    <ClCompile Include="ofxaddons\ofxFBX\libs\libfbxsdk_2019.5\include\Common\GeometryUtility.cxx" />
+    <ClCompile Include="ofxaddons\ofxFirstPersonCamera\src\ofxFirstPersonCamera.cpp" />
+    <ClCompile Include="ofxaddons\ofxManipulator\src\ofxManipulator.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\libs\cimgui-1.89.9-44769f63d\cimgui.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\libs\imgui-1.89.9-1d8e48c16\examples\imgui_impl_glfw.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\libs\imgui-1.89.9-1d8e48c16\examples\imgui_impl_opengl2.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\libs\imgui-1.89.9-1d8e48c16\examples\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\libs\imgui-1.89.9-1d8e48c16\imgui.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\libs\imgui-1.89.9-1d8e48c16\imgui_demo.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\libs\imgui-1.89.9-1d8e48c16\imgui_draw.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\libs\imgui-1.89.9-1d8e48c16\imgui_widgets.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\libs\imgui-1.89.9-1d8e48c16\imgui_tables.cpp" />
+    <ClCompile Include="ofxaddons\ofxRaccoonImGui\src\ofxRaccoonImGui.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\BleachBypassPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\BloomPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\ContrastPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\ConvolutionPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\DofAltPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\DofPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\EdgePass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\FakeSSSPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\FxaaPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\GodRaysPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\HorizontalTiltShifPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\HsbShiftPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\KaleidoscopePass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\LimbDarkeningPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\LUTPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\NoiseWarpPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\PixelatePass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\PostProcessing.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\RenderPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\RGBShiftPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\RimHighlightingPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\SSAOPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\ToonPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\VerticalTiltShifPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessing\src\ZoomBlurPass.cpp" />
+    <ClCompile Include="ofxaddons\ofxPostProcessingExtra\GenericPass.cpp" />
+    <ClCompile Include="redgpu_f2.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{c490ab98-f892-4085-9bbf-ea04fde3095c}</ProjectGuid>
+    <RootNamespace>redgpuf2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>src/boost/lib/vs/x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>src/boost/lib/vs/x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;REDGPUF2_EXPORTS;_WINDOWS;_USRDLL;OF_USING_STD_FS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>
+src/openframeworks;
+src/openframeworks/3d;
+src/openframeworks/app;
+src/openframeworks/communication;
+src/openframeworks/events;
+src/openframeworks/gl;
+src/openframeworks/graphics;
+src/openframeworks/math;
+src/openframeworks/sound;
+src/openframeworks/types;
+src/openframeworks/utils;
+src/openframeworks/video;
+src/glew;
+src/glew/include;
+src/libtess2;
+src/libtess2/include;
+src/boost;
+src/boost/include;
+src/utf8cpp;
+src/utf8cpp/include;
+src/glm;
+src/glm/include;
+src/json;
+src/json/include;
+src/pugixml;
+src/pugixml/include;
+src/cairo;
+src/cairo/include;
+src/cairo/include/cairo;
+addons/ofxAssimpModelLoader/libs/assimp/include;
+ofxaddons/ofxRaccoonImGui/libs/imgui-1.89.9-1d8e48c16;
+ofxaddons/ofxRaccoonImGui/libs/imgui-1.89.9-1d8e48c16/examples;
+ofxaddons/ofxFBX/src;
+ofxaddons\ofxFBX\src\FBXSource;
+ofxaddons/ofxFBX/libs/libfbxsdk_2019.5/include;
+of_v0.12.0_vs_release/libs/glfw/include;
+%(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;REDGPUF2_EXPORTS;_WINDOWS;_USRDLL;OF_USING_STD_FS;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>
+src/openframeworks;
+src/openframeworks/3d;
+src/openframeworks/app;
+src/openframeworks/communication;
+src/openframeworks/events;
+src/openframeworks/gl;
+src/openframeworks/graphics;
+src/openframeworks/math;
+src/openframeworks/sound;
+src/openframeworks/types;
+src/openframeworks/utils;
+src/openframeworks/video;
+src/glew;
+src/glew/include;
+src/libtess2;
+src/libtess2/include;
+src/boost;
+src/boost/include;
+src/utf8cpp;
+src/utf8cpp/include;
+src/glm;
+src/glm/include;
+src/json;
+src/json/include;
+src/pugixml;
+src/pugixml/include;
+src/cairo;
+src/cairo/include;
+src/cairo/include/cairo;
+addons/ofxAssimpModelLoader/libs/assimp/include;
+ofxaddons/ofxRaccoonImGui/libs/imgui-1.89.9-1d8e48c16;
+ofxaddons/ofxRaccoonImGui/libs/imgui-1.89.9-1d8e48c16/examples;
+ofxaddons/ofxFBX/src;
+ofxaddons\ofxFBX\src\FBXSource;
+ofxaddons/ofxFBX/libs/libfbxsdk_2019.5/include;
+of_v0.12.0_vs_release/libs/glfw/include;
+%(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

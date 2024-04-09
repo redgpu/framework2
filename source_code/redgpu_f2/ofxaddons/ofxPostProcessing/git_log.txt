@@ -1,0 +1,8 @@
+commit ee24d5219c561e558e557522926890bd9e3f7186
+Merge: ffa56b5 45acaac
+Author: Neil Mendoza <neil@isthis.gd>
+Date:   Tue Jan 14 23:01:36 2020 -0500
+
+    Merge pull request #14 from acarabott/bugfix-verttiltshift
+    
+    vertTiltShift: semantic fix, set/getV instead of set/getH

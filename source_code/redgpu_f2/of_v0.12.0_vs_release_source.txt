@@ -1,0 +1,8 @@
+https://github.com/openframeworks/openFrameworks/releases/tag/0.12.0
+https://github.com/openframeworks/openFrameworks/releases/download/0.12.0/of_v0.12.0_vs_release.zip
+
+sha256sum:
+7a569918c7f66eee1a0fcecc12152f1d8f1b376f72410b9cea5acb492097d48f  of_v0.12.0_vs_release.zip
+
+Upload date on github.com:
+Sep 30, 2023, 3:41 PM UTC
