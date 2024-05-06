@@ -13,6 +13,7 @@ typedef struct RedFTypeHandleNode *                  RedFHandleNode;
 typedef struct RedFTypeHandleCamera *                RedFHandleCamera;                // Derived from Node
 typedef struct RedFTypeHandleFirstPersonCamera *     RedFHandleFirstPersonCamera;     // Derived from Camera
 typedef struct RedFTypeHandleMesh *                  RedFHandleMesh;
+typedef struct RedFTypeHandleVboMesh *               RedFHandleVboMesh;               // Derived from Mesh
 typedef struct RedFTypeHandleImage *                 RedFHandleImage;
 typedef struct RedFTypeHandleFbo *                   RedFHandleFbo;
 typedef struct RedFTypeHandleLight *                 RedFHandleLight;                 // Derived from Node
@@ -349,6 +350,27 @@ REDGPU_F_DECLSPEC void                redFMeshDrawVertices                    (R
 REDGPU_F_DECLSPEC void                redFMeshDrawWireframe                   (RedFHandleMesh handle);
 REDGPU_F_DECLSPEC void                redFMeshDraw                            (RedFHandleMesh handle);
 REDGPU_F_DECLSPEC void                redFMeshDrawWithRenderMode              (RedFHandleMesh handle, RedFPolyRenderMode renderMode);
+
+REDGPU_F_DECLSPEC RedFHandleVboMesh * redFCreateVboMesh                       (uint64_t count);
+REDGPU_F_DECLSPEC void                redFDestroyVboMesh                      (RedFHandleVboMesh * handles);
+REDGPU_F_DECLSPEC RedFHandleMesh      redFVboMeshCastToMesh                   (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC void                redFVboMeshSetMesh                      (RedFHandleVboMesh handle, RedFHandleMesh mesh);
+REDGPU_F_DECLSPEC void                redFVboMeshSetUsage                     (RedFHandleVboMesh handle, int usageDefaultIsGlStaticDraw);
+REDGPU_F_DECLSPEC void                redFVboMeshEnableColors                 (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC void                redFVboMeshEnableTextures               (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC void                redFVboMeshEnableNormals                (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC void                redFVboMeshEnableIndices                (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC void                redFVboMeshDisableColors                (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC void                redFVboMeshDisableTextures              (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC void                redFVboMeshDisableNormals               (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC void                redFVboMeshDisableIndices               (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC RedFBool32          redFVboMeshUsingColors                  (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC RedFBool32          redFVboMeshUsingTextures                (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC RedFBool32          redFVboMeshUsingNormals                 (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC RedFBool32          redFVboMeshUsingIndices                 (RedFHandleVboMesh handle);
+REDGPU_F_DECLSPEC void                redFVboMeshDrawInstanced                (RedFHandleVboMesh handle, RedFPolyRenderMode renderMode, int primCount);
+REDGPU_F_DECLSPEC void                redFVboMeshDraw                         (RedFHandleVboMesh handle, RedFPolyRenderMode renderMode);
+REDGPU_F_DECLSPEC void                redFVboMeshUpdateVbo                    (RedFHandleVboMesh handle);
 
 REDGPU_F_DECLSPEC RedFHandleImage *   redFCreateImage                         (uint64_t count);
 REDGPU_F_DECLSPEC void                redFDestroyImage                        (RedFHandleImage * handles);

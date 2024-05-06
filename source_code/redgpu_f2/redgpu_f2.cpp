@@ -357,6 +357,7 @@ REDGPU_F_DECLARE_CREATE_AND_DESTROY_PROCEDURES(Node, ofNode)
 REDGPU_F_DECLARE_CREATE_AND_DESTROY_PROCEDURES(Camera, ofCamera)
 REDGPU_F_DECLARE_CREATE_AND_DESTROY_PROCEDURES(FirstPersonCamera, ofxFirstPersonCamera)
 REDGPU_F_DECLARE_CREATE_AND_DESTROY_PROCEDURES(Mesh, ofMesh)
+REDGPU_F_DECLARE_CREATE_AND_DESTROY_PROCEDURES(VboMesh, ofVboMesh)
 REDGPU_F_DECLARE_CREATE_AND_DESTROY_PROCEDURES(Image, ofImage)
 REDGPU_F_DECLARE_CREATE_AND_DESTROY_PROCEDURES(Fbo, ofFbo)
 REDGPU_F_DECLARE_CREATE_AND_DESTROY_PROCEDURES(Light, ofLight)
@@ -1295,6 +1296,96 @@ REDGPU_F_DECLSPEC void redFMeshDraw(RedFHandleMesh handle) {
 REDGPU_F_DECLSPEC void redFMeshDrawWithRenderMode(RedFHandleMesh handle, RedFPolyRenderMode renderMode) {
   ofMesh * mesh = (ofMesh *)handle;
   mesh->draw((ofPolyRenderMode)renderMode);
+}
+
+REDGPU_F_DECLSPEC RedFHandleMesh redFVboMeshCastToMesh(RedFHandleVboMesh handle) {
+  return (RedFHandleMesh)(void *)handle;
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshSetMesh(RedFHandleVboMesh handle, RedFHandleMesh mesh) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  ofMesh * msh = (ofMesh *)mesh;
+  vboMesh[0] = msh[0];
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshSetUsage(RedFHandleVboMesh handle, int usageDefaultIsGlStaticDraw) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->setUsage(usageDefaultIsGlStaticDraw);
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshEnableColors(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->enableColors();
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshEnableTextures(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->enableTextures();
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshEnableNormals(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->enableNormals();
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshEnableIndices(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->enableIndices();
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshDisableColors(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->disableColors();
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshDisableTextures(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->disableTextures();
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshDisableNormals(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->disableNormals();
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshDisableIndices(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->disableIndices();
+}
+
+REDGPU_F_DECLSPEC RedFBool32 redFVboMeshUsingColors(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  return (RedFBool32)vboMesh->usingColors();
+}
+
+REDGPU_F_DECLSPEC RedFBool32 redFVboMeshUsingTextures(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  return (RedFBool32)vboMesh->usingTextures();
+}
+
+REDGPU_F_DECLSPEC RedFBool32 redFVboMeshUsingNormals(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  return (RedFBool32)vboMesh->usingNormals();
+}
+
+REDGPU_F_DECLSPEC RedFBool32 redFVboMeshUsingIndices(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  return (RedFBool32)vboMesh->usingIndices();
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshDrawInstanced(RedFHandleVboMesh handle, RedFPolyRenderMode renderMode, int primCount) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->drawInstanced((ofPolyRenderMode)renderMode, primCount);
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshDraw(RedFHandleVboMesh handle, RedFPolyRenderMode renderMode) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->draw((ofPolyRenderMode)renderMode);
+}
+
+REDGPU_F_DECLSPEC void redFVboMeshUpdateVbo(RedFHandleVboMesh handle) {
+  ofVboMesh * vboMesh = (ofVboMesh *)handle;
+  vboMesh->getVbo();
 }
 
 REDGPU_F_DECLSPEC void redFImageAllocate(RedFHandleImage handle, int w, int h, RedFImageType type) {
