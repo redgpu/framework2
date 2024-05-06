@@ -2397,6 +2397,16 @@ JSON_HEDLEY_DIAGNOSTIC_POP
     #define JSON_HAS_CPP_11
 #endif
 
+#ifdef __linux__
+#warning
+  #ifdef JSON_HAS_CPP_20
+  #undef JSON_HAS_CPP_20
+  #endif
+  #ifdef JSON_HAS_CPP_17
+  #undef JSON_HAS_CPP_17
+  #endif
+#endif
+
 #ifdef __has_include
     #if __has_include(<version>)
         #include <version>

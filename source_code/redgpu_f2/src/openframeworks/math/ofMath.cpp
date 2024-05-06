@@ -36,11 +36,19 @@ void ofSeedRandom() {
 
 //--------------------------------------------------
 void ofSetRandomSeed(unsigned long new_seed) {
+#ifdef __linux__
+#warning
+#else
     of::random::seed(new_seed);
+#endif
 }
 
 void ofSeedRandom(int val) {
+#ifdef __linux__
+    srand((long) val);
+#else
     ofSetRandomSeed(val);
+#endif
 }
 
 //--------------------------------------------------

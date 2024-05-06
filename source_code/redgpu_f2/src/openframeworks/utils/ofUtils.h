@@ -15,8 +15,12 @@
 #include <type_traits>
 #include <random>
 
+#ifdef __linux__
+#warning
+#else
 #include "ofRandomEngine.h"
 #include "ofRandomDistributions.h"
+#endif
 
 /// \section Elapsed Time
 /// \brief Reset the elapsed time counter.
@@ -227,10 +231,14 @@ int ofGetWeekday();
 /// \tparam T Any container that meets std::shuffle's requirements
 /// which are: ValueSwappable and LegacyRandomAccessIterator.
 
+#ifdef __linux__
+#warning
+#else
 template<typename ... Args>
 void ofShuffle(Args&&... args) {
     of::random::shuffle(std::forward<Args>(args)...);
 }
+#endif
 
 /// \section Vectors
 /// \brief Randomly reorder the values in a vector.
@@ -239,7 +247,12 @@ void ofShuffle(Args&&... args) {
 
 template<class T>
 void ofRandomize(std::vector<T>& values) {
+#ifdef __linux__
+    //switch from random_shuffle ( removed in some C++17 impl )
+    std::shuffle(values.begin(), values.end(), std::default_random_engine(0));
+#else
     of::random::shuffle(values);
+#endif
 }
 
 /// \brief Conditionally remove values from a vector.

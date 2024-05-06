@@ -1,5 +1,5 @@
 # https://stackoverflow.com/questions/39475716/undefined-reference-to-boostfilesystempath-traitsconvert
-g++ -shared -fPIC -O2 -std=c++17 -o libredgpu_f2.so \
+clang++ -shared -fPIC -O2 -std=c++17 -o libredgpu_f2.so \
 -Isrc/openframeworks \
 -Isrc/openframeworks/3d \
 -Isrc/openframeworks/app \

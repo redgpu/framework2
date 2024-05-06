@@ -48,17 +48,16 @@ static inline void tracingPrint() {}
 
 #ifndef _WIN32
 // https://stackoverflow.com/questions/4804298/how-to-convert-wstring-into-string
+// https://stackoverflow.com/questions/15615136/is-codecvt-not-a-std-header/28875347#28875347
+
+#include <boost/locale/encoding_utf.hpp>
 
 static std::wstring s2ws(const std::string & str) {
-  using convert_typeX = std::codecvt_utf8<wchar_t>;
-  std::wstring_convert<convert_typeX, wchar_t> converterX;
-  return converterX.from_bytes(str);
+  return boost::locale::conv::utf_to_utf<wchar_t>(str.c_str(), str.c_str() + str.size());
 }
 
 static std::string ws2s(const std::wstring & wstr) {
-  using convert_typeX = std::codecvt_utf8<wchar_t>;
-  std::wstring_convert<convert_typeX, wchar_t> converterX;
-  return converterX.to_bytes(wstr);
+  return boost::locale::conv::utf_to_utf<char>(wstr.c_str(), wstr.c_str() + wstr.size());
 }
 #endif
 
@@ -1341,7 +1340,12 @@ REDGPU_F_DECLSPEC void redFImageClear(RedFHandleImage handle) {
 REDGPU_F_DECLSPEC RedFBool32 redFImageLoad(RedFHandleImage handle, const char * fileName) {
   ofImage * image = (ofImage *)handle;
   std::string name = fileName;
+#ifdef __linux__
+#warning
+  std::string path = name;
+#else
   std::filesystem::path path = name;
+#endif
   return image->load(path);
 }
 
@@ -1355,7 +1359,12 @@ REDGPU_F_DECLSPEC RedFBool32 redFImageLoadFromMemory(RedFHandleImage handle, uin
 REDGPU_F_DECLSPEC void redFImageSave(RedFHandleImage handle, const char * fileName) {
   ofImage * image = (ofImage *)handle;
   std::string name = fileName;
+#ifdef __linux__
+#warning
+  std::string path = name;
+#else
   std::filesystem::path path = name;
+#endif
   image->save(path);
 }
 
@@ -1615,7 +1624,12 @@ REDGPU_F_DECLSPEC void redFFboSave(RedFHandleFbo handle, int fboAttachmentPoint,
   fbo->readToPixels(pixels, fboAttachmentPoint);
   img.setFromPixels(pixels);
   std::string name = fileName;
+#ifdef __linux__
+#warning
+  std::string path = name;
+#else
   std::filesystem::path path = name;
+#endif
   img.save(path);
 }
 
@@ -2003,9 +2017,19 @@ REDGPU_F_DECLSPEC void redFMaterialEnd(RedFHandleMaterial handle) {
 REDGPU_F_DECLSPEC RedFBool32 redFShaderLoad(RedFHandleShader handle, const char * vertexFileName, const char * fragmentFileName) {
   ofShader * shader = (ofShader *)handle;
   std::string vertName = vertexFileName;
+#ifdef __linux__
+#warning
+  std::string vertPath = vertName;
+#else
   std::filesystem::path vertPath = vertName;
+#endif
   std::string fragName = fragmentFileName;
+#ifdef __linux__
+#warning
+  std::string fragPath = fragName;
+#else
   std::filesystem::path fragPath = fragName;
+#endif
   return (RedFBool32)shader->load(vertPath, fragPath);
 }
 
@@ -2334,7 +2358,12 @@ REDGPU_F_DECLSPEC void redFImguiEnd(RedFHandleImgui handle) {
 REDGPU_F_DECLSPEC RedFBool32 redFSoundPlayerLoad(RedFHandleSoundPlayer handle, const char * fileName, RedFBool32 streamDefaultIs0) {
   ofSoundPlayer * sound = (ofSoundPlayer *)handle;
   std::string name = fileName;
+#ifdef __linux__
+#warning
+  std::string path = name;
+#else
   std::filesystem::path path = name;
+#endif
   return (RedFBool32)sound->load(path, streamDefaultIs0);
 }
 
@@ -2447,14 +2476,24 @@ REDGPU_F_DECLSPEC void redFSoundUpdate(void) {
 REDGPU_F_DECLSPEC void redFDirectoryOpen(RedFHandleDirectory handle, const char * path) {
   ofDirectory * dir = (ofDirectory *)handle;
   std::string name = path;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   dir->open(p);
 }
 
 REDGPU_F_DECLSPEC void redFDirectoryOpenFromCurrentWorkingDirectory(RedFHandleDirectory handle, const char * path) {
   ofDirectory * dir = (ofDirectory *)handle;
   std::string name = path;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   dir->openFromCWD(p);
 }
 
@@ -2560,21 +2599,36 @@ REDGPU_F_DECLSPEC void redFDirectorySetShowHidden(RedFHandleDirectory handle, Re
 REDGPU_F_DECLSPEC RedFBool32 redFDirectoryCopyTo(RedFHandleDirectory handle, const char * path, RedFBool32 bRelativeToDataDefaultIs1, RedFBool32 overwriteDefaultIs0) {
   ofDirectory * dir = (ofDirectory *)handle;
   std::string name = path;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   return (RedFBool32)dir->copyTo(p, bRelativeToDataDefaultIs1, overwriteDefaultIs0);
 }
 
 REDGPU_F_DECLSPEC RedFBool32 redFDirectoryMoveTo(RedFHandleDirectory handle, const char * path, RedFBool32 bRelativeToDataDefaultIs1, RedFBool32 overwriteDefaultIs0) {
   ofDirectory * dir = (ofDirectory *)handle;
   std::string name = path;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   return (RedFBool32)dir->moveTo(p, bRelativeToDataDefaultIs1, overwriteDefaultIs0);
 }
 
 REDGPU_F_DECLSPEC RedFBool32 redFDirectoryRenameTo(RedFHandleDirectory handle, const char * path, RedFBool32 bRelativeToDataDefaultIs1, RedFBool32 overwriteDefaultIs0) {
   ofDirectory * dir = (ofDirectory *)handle;
   std::string name = path;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   return (RedFBool32)dir->renameTo(p, bRelativeToDataDefaultIs1, overwriteDefaultIs0);
 }
 
@@ -2819,53 +2873,95 @@ REDGPU_F_DECLSPEC uint64_t redFDirectoryGetFileGetSize(RedFHandleDirectory handl
 
 REDGPU_F_DECLSPEC RedFBool32 redFCreateDirectoryPath(const char * dirPath, RedFBool32 bRelativeToDataDefaultIs1, RedFBool32 recursiveDefaultIs0) {
   std::string name = dirPath;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   return (RedFBool32)ofDirectory::createDirectory(p, bRelativeToDataDefaultIs1, recursiveDefaultIs0);
 }
 
 REDGPU_F_DECLSPEC RedFBool32 redFIsDirectoryEmpty(const char * dirPath, RedFBool32 bRelativeToDataDefaultIs1) {
   std::string name = dirPath;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   return (RedFBool32)ofDirectory::isDirectoryEmpty(p, bRelativeToDataDefaultIs1);
 }
 
 REDGPU_F_DECLSPEC RedFBool32 redFDoesDirectoryExist(const char * dirPath, RedFBool32 bRelativeToDataDefaultIs1) {
   std::string name = dirPath;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   return (RedFBool32)ofDirectory::doesDirectoryExist(p, bRelativeToDataDefaultIs1);
 }
 
 REDGPU_F_DECLSPEC RedFBool32 redFRemoveDirectory(const char * dirPath, RedFBool32 deleteIfNotEmpty, RedFBool32 bRelativeToDataDefaultIs1) {
   std::string name = dirPath;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   return (RedFBool32)ofDirectory::removeDirectory(p, deleteIfNotEmpty, bRelativeToDataDefaultIs1);
 }
 
 REDGPU_F_DECLSPEC RedFBool32 redFCopyFileFromTo(const char * pathSrc, const char * pathDst, RedFBool32 bRelativeToDataDefaultIs1, RedFBool32 overwriteDefaultIs0) {
   std::string nameSrc = pathSrc;
   std::string nameDst = pathDst;
+#ifdef __linux__
+#warning
+  std::string src = nameSrc;
+  std::string dst = nameDst;
+#else
   std::filesystem::path src = nameSrc;
   std::filesystem::path dst = nameDst;
+#endif
   return (RedFBool32)ofFile::copyFromTo(src, dst, bRelativeToDataDefaultIs1, overwriteDefaultIs0);
 }
 
 REDGPU_F_DECLSPEC RedFBool32 redFMoveFileFromTo(const char * pathSrc, const char * pathDst, RedFBool32 bRelativeToDataDefaultIs1, RedFBool32 overwriteDefaultIs0) {
   std::string nameSrc = pathSrc;
   std::string nameDst = pathDst;
+#ifdef __linux__
+#warning
+  std::string src = nameSrc;
+  std::string dst = nameDst;
+#else
   std::filesystem::path src = nameSrc;
   std::filesystem::path dst = nameDst;
+#endif
   return (RedFBool32)ofFile::moveFromTo(src, dst, bRelativeToDataDefaultIs1, overwriteDefaultIs0);
 }
 
 REDGPU_F_DECLSPEC RedFBool32 redFDoesFileExist(const char * path, RedFBool32 bRelativeToDataDefaultIs1) {
   std::string name = path;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   return (RedFBool32)ofFile::doesFileExist(p, bRelativeToDataDefaultIs1);
 }
 
 REDGPU_F_DECLSPEC RedFBool32 redFRemoveFile(const char * path, RedFBool32 bRelativeToDataDefaultIs1) {
   std::string name = path;
+#ifdef __linux__
+#warning
+  std::string p = name;
+#else
   std::filesystem::path p = name;
+#endif
   return (RedFBool32)ofFile::removeFile(p, bRelativeToDataDefaultIs1);
 }
 
@@ -3982,7 +4078,12 @@ REDGPU_F_DECLSPEC RedFBool32 redF2ShadowsAreSupported(void) {
 REDGPU_F_DECLSPEC void redF2MeshLoadPly(const char * fileName, RedFHandleMesh replaceMesh) {
   ofMesh * mesh = (ofMesh *)replaceMesh;
   std::string name = fileName;
+#ifdef __linux__
+#warning
+  std::string path = name;
+#else
   std::filesystem::path path = name;
+#endif
   mesh->load(path);
 }
 
