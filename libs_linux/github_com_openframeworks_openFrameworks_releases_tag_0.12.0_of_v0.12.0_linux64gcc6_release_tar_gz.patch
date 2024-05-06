@@ -1,0 +1,141 @@
+diff --git a/libs/openFrameworks/math/ofMath.cpp b/libs/openFrameworks/math/ofMath.cpp
+index 768aaf4..b567488 100644
+--- a/libs/openFrameworks/math/ofMath.cpp
++++ b/libs/openFrameworks/math/ofMath.cpp
+@@ -36,11 +36,19 @@ void ofSeedRandom() {
+ 
+ //--------------------------------------------------
+ void ofSetRandomSeed(unsigned long new_seed) {
++#ifdef __linux__
++#warning
++#else
+     of::random::seed(new_seed);
++#endif
+ }
+ 
+ void ofSeedRandom(int val) {
++#ifdef __linux__
++    srand((long) val);
++#else
+     ofSetRandomSeed(val);
++#endif
+ }
+ 
+ //--------------------------------------------------
+diff --git a/libs/openFrameworks/ofMain.h b/libs/openFrameworks/ofMain.h
+index b2d8a37..353f2b0 100644
+--- a/libs/openFrameworks/ofMain.h
++++ b/libs/openFrameworks/ofMain.h
+@@ -113,6 +113,24 @@
+ #include "ofNode.h"
+ 
+ //--------------------------
+-using namespace std;
++
++// NOTE(Constantine): lol https://developercommunity.visualstudio.com/t/error-c2872-byte-ambiguous-symbol/93889 https://github.com/openframeworks/openFrameworks/issues/7628
++//using namespace std;
++using std::string;
++using std::stringstream;
++using std::endl;
++using std::vector;
++using std::max;
++using std::make_shared;
++using std::deque;
++using std::cout;
++using std::swap;
++using std::pair;
++using std::map;
++using std::shared_ptr;
++using std::weak_ptr;
++using std::to_string;
++using std::list;                 // For ofxFBX
++using std::dynamic_pointer_cast; // For ofxFBX
+ 
+ #endif
+diff --git a/libs/openFrameworks/utils/ofConstants.h b/libs/openFrameworks/utils/ofConstants.h
+index be81737..4c32926 100644
+--- a/libs/openFrameworks/utils/ofConstants.h
++++ b/libs/openFrameworks/utils/ofConstants.h
+@@ -470,7 +470,7 @@ std::unique_ptr<T> make_unique(Args&&... args) {
+ 
+ 
+ // If you are building with c++17 or newer std filesystem will be enabled by default
+-#if __cplusplus >= 201500
++#if __cplusplus >= 201500 && !defined(__linux__)
+     #define OF_HAS_CPP17 1
+     #if __cplusplus < 201703L
+         #define OF_USE_EXPERIMENTAL_FS 1
+diff --git a/libs/openFrameworks/utils/ofUtils.cpp b/libs/openFrameworks/utils/ofUtils.cpp
+index 12bdd34..5fc034d 100644
+--- a/libs/openFrameworks/utils/ofUtils.cpp
++++ b/libs/openFrameworks/utils/ofUtils.cpp
+@@ -61,7 +61,11 @@ namespace of{
+ namespace priv{
+ 	void initutils(){
+         ofResetElapsedTimeCounter();
++#ifdef __linux__
++        ofSeedRandom();
++#else
+         of::random::Engine::construct();
++#endif
+     }
+ 
+ 	void endutils(){
+diff --git a/libs/openFrameworks/utils/ofUtils.h b/libs/openFrameworks/utils/ofUtils.h
+index e3c4169..2963b01 100644
+--- a/libs/openFrameworks/utils/ofUtils.h
++++ b/libs/openFrameworks/utils/ofUtils.h
+@@ -15,8 +15,12 @@
+ #include <type_traits>
+ #include <random>
+ 
++#ifdef __linux__
++#warning
++#else
+ #include "ofRandomEngine.h"
+ #include "ofRandomDistributions.h"
++#endif
+ 
+ /// \section Elapsed Time
+ /// \brief Reset the elapsed time counter.
+@@ -227,10 +231,14 @@ int ofGetWeekday();
+ /// \tparam T Any container that meets std::shuffle's requirements
+ /// which are: ValueSwappable and LegacyRandomAccessIterator.
+ 
++#ifdef __linux__
++#warning
++#else
+ template<typename ... Args>
+ void ofShuffle(Args&&... args) {
+     of::random::shuffle(std::forward<Args>(args)...);
+ }
++#endif
+ 
+ /// \section Vectors
+ /// \brief Randomly reorder the values in a vector.
+@@ -239,7 +247,12 @@ void ofShuffle(Args&&... args) {
+ 
+ template<class T>
+ void ofRandomize(std::vector<T>& values) {
++#ifdef __linux__
++    //switch from random_shuffle ( removed in some C++17 impl )
++    std::shuffle(values.begin(), values.end(), std::default_random_engine(0));
++#else
+     of::random::shuffle(values);
++#endif
+ }
+ 
+ /// \brief Conditionally remove values from a vector.
+diff --git a/libs/utf8/include/utf8/checked.h b/libs/utf8/include/utf8/checked.h
+index 993b7f7..8b3653f 100644
+--- a/libs/utf8/include/utf8/checked.h
++++ b/libs/utf8/include/utf8/checked.h
+@@ -325,7 +325,7 @@ namespace utf8
+ 
+ } // namespace utf8
+ 
+-#if UTF_CPP_CPLUSPLUS >= 201703L // C++ 17 or later
++#if UTF_CPP_CPLUSPLUS >= 201703L && !defined(__linux__) // C++ 17 or later
+ #include "cpp17.h"
+ #elif UTF_CPP_CPLUSPLUS >= 201103L // C++ 11 or later
+ #include "cpp11.h"
