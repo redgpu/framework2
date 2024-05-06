@@ -159,7 +159,7 @@ addons/ofxAssimpModelLoader/libs/assimp/include;
 ofxaddons/ofxRaccoonImGui/libs/imgui-1.89.9-1d8e48c16;
 ofxaddons/ofxRaccoonImGui/libs/imgui-1.89.9-1d8e48c16/examples;
 ofxaddons/ofxFBX/src;
-ofxaddons\ofxFBX\src\FBXSource;
+ofxaddons/ofxFBX/src/FBXSource;
 ofxaddons/ofxFBX/libs/libfbxsdk_2019.5/include;
 of_v0.12.0_vs_release/libs/glfw/include;
 %(AdditionalIncludeDirectories)
@@ -216,7 +216,7 @@ addons/ofxAssimpModelLoader/libs/assimp/include;
 ofxaddons/ofxRaccoonImGui/libs/imgui-1.89.9-1d8e48c16;
 ofxaddons/ofxRaccoonImGui/libs/imgui-1.89.9-1d8e48c16/examples;
 ofxaddons/ofxFBX/src;
-ofxaddons\ofxFBX\src\FBXSource;
+ofxaddons/ofxFBX/src/FBXSource;
 ofxaddons/ofxFBX/libs/libfbxsdk_2019.5/include;
 of_v0.12.0_vs_release/libs/glfw/include;
 %(AdditionalIncludeDirectories)
