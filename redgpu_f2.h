@@ -764,7 +764,7 @@ REDGPU_F_DECLSPEC void                redFDisableSeparateSpecularLight        (v
 REDGPU_F_DECLSPEC void                redFSetGlobalAmbientColor               (float r, float g, float b, float a);
 REDGPU_F_DECLSPEC void                redFGetGlobalAmbientColor               (void * outVec4);
 REDGPU_F_DECLSPEC void                redFSetSmoothLighting                   (RedFBool32 enable);
-REDGPU_F_DECLSPEC void                redFEnableCulling                       (unsigned modeDefaultIsGLBack0x0405);
+REDGPU_F_DECLSPEC void                redFEnableCulling                       (unsigned modeDefaultIsGlBack0x0405);
 REDGPU_F_DECLSPEC void                redFDisableCulling                      (void);
 REDGPU_F_DECLSPEC void                redFSaveScreenToPng                     (const char * fileName);
 REDGPU_F_DECLSPEC void                redFSaveScreenRawToMemory               (int x, int y, int width, int height, void * out8BitRGBAPixels);
