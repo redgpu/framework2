@@ -50,10 +50,12 @@ namespace itg
         }
         else
         {
-            s.width = ofNextPow2(width);
-            s.height = ofNextPow2(height);
+            s.width = ofNextPow2(width); // Test value: 2048
+            s.height = ofNextPow2(height); // Test value: 1024
             s.textureTarget = GL_TEXTURE_2D;
         }
+        this->widthFbo = s.width;
+        this->heightFbo = s.height;
         
         // no need to use depth for ping pongs
         for (int i = 0; i < 2; ++i)
@@ -81,7 +83,7 @@ namespace itg
         ofMatrixMode(OF_MATRIX_MODELVIEW);
         ofPushMatrix();
         
-        ofViewport(0, 0, raw.getWidth(), raw.getHeight());
+        ofViewport(0, 0, ofGetWindowWidth(), ofGetWindowHeight()); // Test values: 1800, 900
         
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         
@@ -94,9 +96,9 @@ namespace itg
         // update camera matrices
 
         raw.begin(OF_FBOMODE_NODEFAULTS);
-        cam.begin();
         
-        ofViewport(0, 0, raw.getWidth(), raw.getHeight());
+        ofViewport(0, 0, ofGetWindowWidth(), ofGetWindowHeight()); // Test values: 1800, 900
+        cam.begin();
         
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         
@@ -109,11 +111,11 @@ namespace itg
         glPopAttrib();
         ofPopStyle();
         
-        ofViewport(0, 0, ofGetWidth(), ofGetHeight());
-        
         cam.end();
         raw.end();
         
+        ofViewport(0, 0, ofGetWidth(), ofGetHeight());
+
         ofPushStyle();
         glPushAttrib(GL_ENABLE_BIT);
         glDisable(GL_LIGHTING);
@@ -133,7 +135,7 @@ namespace itg
     
     void PostProcessing::draw(float x, float y) const
     {
-        draw(x, y, width, height);
+        draw(x, y, widthFbo, heightFbo); // Test values: 2048, 1024
     }
     
     void PostProcessing::draw(float x, float y, float w, float h) const

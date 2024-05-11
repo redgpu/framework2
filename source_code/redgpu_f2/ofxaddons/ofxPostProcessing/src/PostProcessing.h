@@ -86,6 +86,7 @@ namespace itg
         unsigned currentReadFbo;
         unsigned numProcessedPasses;
         unsigned width, height;
+        unsigned widthFbo, heightFbo;
         bool flip;
         bool arb;
         
