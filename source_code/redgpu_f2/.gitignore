@@ -1,3 +1,7 @@
 of_v0.12.0_vs_release.zip
 of_v0.12.0_vs_release/*
 libredgpu_f2.so
+
+.vs/
+x64/
+redgpu_f2.vcxproj.user
