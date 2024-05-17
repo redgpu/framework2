@@ -130,7 +130,6 @@ RedFHandleMaterial *          bgMaterial;
 RedFHandleMaterial *          sphereMaterial;
 
 void setup(void) {
-  glfwSwapInterval(1);
   redFSetVerticalSync(0);
   
   redF2SetLogLevel(REDF2_LOG_LEVEL_VERBOSE);
@@ -424,5 +423,5 @@ int main() {
 * Prefer to call `redFEnableFramebufferSRGBGammaCorrection` at setup event to enable gamma-correct rendering. Images loaded from disk will likely be in the wrong gamma, so convert their 0 to 255 8-bit RGB pixel values to 0.0 to 1.0 float values, apply `r *= r; g *= g; b *= b;` and set the modified float values back to image pixels as 0 to 255 8-bit values.
 * REDGPU Framework doesn't call `glfwPollEvents` or `glfwWaitEvents` anywhere internally, so prefer to call `glfwPollEvents` each frame at the beginning of update event to get correct input events.
 * Many draw procedures are affected by the currently set `redFSetColor` color.
-* You may need to call `glfwSwapInterval(1); redFSetVerticalSync(0);` at setup event for G-Sync monitors.
+* You may need to call `redFSetVerticalSync(0);` at setup event to disable VSync for G-Sync monitors.
 * Compile command for Linux (tested on Ubuntu 16.04.6 with Clang 8, Elementary OS 7.1): clang++ main.cpp -std=c++17 -Wl,--start-group libredgpu_f2.so libs_linux/libopenFrameworks.a -lm -lGL -lX11 -lglfw libs_linux/libfbxsdk.a -lxml2 -licuuc -lz libs_linux/libtess2.a -lGLEW -lpugixml -lcurl libs_linux/libassimp.so -lgstreamer-1.0 -lgobject-2.0 -lglib-2.0 -lgstapp-1.0 -lgstbase-1.0 -lgstvideo-1.0 -luriparser -lgtk-3 -lfontconfig -lfreetype -lopenal -lsndfile libs_linux/libkiss.a -lfreeimage -lboost_system -lboost_filesystem -lmpg123 -ldl -lpthread -Wl,--end-group
